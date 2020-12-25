@@ -1,0 +1,20 @@
+<article class="container">
+  <a href="<%= root_path %>" class="posts-home-link"><span class="posts-home-link--icon">◀</span> Home</a>
+  <h1 class="posts-title"><%= @post.title %></h1>
+  <h2 class="posts-subtitle"><%= @post.subtitle %></h2>
+  <p class="posts-content"><%= @post.content %></p>
+  <hr>
+  <div class="posts-subscribe">
+    <%= render partial: "/subscribe", locals: {subscriber: @subscriber} %>
+  </div>
+  <div class="posts-meta">
+    <p>
+      <time class="posts-time"><%= @post.created_at.strftime("%Y-%m-%d") %></time>
+      <a href="https://twitter.com/KabirGoel">@kabirgoel</a>
+    </p>
+    <%= form_with model: @favorite, html: {class: 'posts-favorite'} do |f| %>
+      <%= f.hidden_field "post", value: @post.id %>
+      <%= f.button "♡ #{@post.favorites.count}" %>
+    <% end %>
+  </div>
+</article>
