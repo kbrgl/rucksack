@@ -1,0 +1,10 @@
+<%= form_with model: @post do |form| %>
+  <%= form.text_field :title, placeholder: 'Title', class: 'field field--title post__title' %>
+  <%= form.text_field :subtitle, placeholder: 'Subtitle', class: 'field field--subtitle' %>
+  <%= form.rich_text_area :content, placeholder: 'Write something amazing.', class: 'field field--content' %>
+  <div>
+    <%= form.check_box :sendmail, checked: false, class: 'field' %> <%= form.label :sendmail, "Send email to subscribers" %>
+    <%= form.check_box :draft, checked: true, class: 'field' %> <%= form.label :draft, "Save as draft (not shown on website)" %>
+  </div>
+  <%= form.submit "Publish", class: 'button button--styled', data: { confirm: "Are you sure you're ready to publish?" } %>
+<% end %>

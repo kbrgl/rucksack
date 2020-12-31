@@ -20,14 +20,26 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 # Use slugs. Read more: https://github.com/norman/friendly_id
 gem 'friendly_id', '~> 5.4.0'
 # New magic.
 gem 'hotwire-rails'
+# Authentication.
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+# Authorization.
+gem 'rolify'
+gem 'cancancan'
+# Rate limits and blocking.
+gem 'rack-attack'
+# Jobs.
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -35,6 +47,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Preview emails without actually sending them.
+  gem 'letter_opener'
 end
 
 group :development do

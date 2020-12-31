@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :subscribers, only: [:create]
-  resources :posts, path: 'p', only: [:create, :show, :edit]
+  devise_for :writers
+
+  resources :subscribers, only: [:create, :destroy]
+  resources :posts, path: 'p', except: :index
+  resources :favorites, only: :create
+  resource :dashboard, only: :show
+
+  match '/writers/:id/approve' => 'writers#approve', via: [:post, :delete], as: :approve_writer
+  resources :writers, only: :destroy
+
   get 'write' => 'posts#new'
-  resources :favorites, only: [:create]
-  get 'subscribers/welcome'
-  root 'welcome#index'
+  root 'posts#index'
 end

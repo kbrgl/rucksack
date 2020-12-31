@@ -1,20 +1,34 @@
-<article class="container">
-  <a href="<%= root_path %>" class="posts-home-link"><span class="posts-home-link--icon">◀</span> Home</a>
-  <h1 class="posts-title"><%= @post.title %></h1>
-  <h2 class="posts-subtitle"><%= @post.subtitle %></h2>
-  <p class="posts-content"><%= @post.content %></p>
-  <hr>
-  <div class="posts-subscribe">
-    <%= render partial: "/subscribe", locals: {subscriber: @subscriber} %>
+<% if writer_signed_in? && (can? :manage, Post) %>
+  <ul class="post__actions list list--unstyled list--horizontal">
+    <li><%= link_to "Edit", edit_post_path(@post) %></li>
+    <li>
+      <%= link_to "Delete", @post, method: 'delete', data: {
+        confirm: "Are you sure you want to delete #{@post.title.presence || 'this post'}?"
+      } %>
+    </li>
+  </ul>
+<% end %>
+<article>
+  <h1 class="post__title"><%= @post.title %></h1>
+  <h2 class="post__subtitle"><%= @post.subtitle %></h2>
+  <div class="post__content">
+    <% if @post.content.to_plain_text.length > 0 || !writer_signed_in? || (cannot? :manage, Post) %>
+      <%= @post.content %>
+    <% else %>
+      <div class="empty-message">
+        There's nothing here yet. Click "Edit" and write something!
+      </div>
+    <% end %>
   </div>
-  <div class="posts-meta">
+  <hr>
+  <%= render partial: "shared/subscribe", locals: {subscriber: @subscriber} %>
+  <div class="post__meta">
     <p>
-      <time class="posts-time"><%= @post.created_at.strftime("%Y-%m-%d") %></time>
-      <a href="https://twitter.com/KabirGoel">@kabirgoel</a>
+      <time class="post__time"><%= format_date(@post.created_at) %></time>
     </p>
-    <%= form_with model: @favorite, html: {class: 'posts-favorite'} do |f| %>
+    <%= form_with model: @favorite do |f| %>
       <%= f.hidden_field "post", value: @post.id %>
-      <%= f.button "♡ #{@post.favorites.count}" %>
+      <%= f.button "♡ #{@post.favorites.count}", class: 'button button--unstyled' %>
     <% end %>
   </div>
 </article>

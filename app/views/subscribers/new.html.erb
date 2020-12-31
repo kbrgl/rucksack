@@ -1,6 +1,4 @@
-<div class="container">
-  <% if flash[:error] %>
-    <p><%= flash[:error] %></p>
-  <% end %>
-  <%= render partial: "/subscribe", locals: {subscriber: @subscriber} %>
-</div>
+<% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+<% end %>
+<%= render partial: "/subscribe", locals: {subscriber: @subscriber} %>

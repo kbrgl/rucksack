@@ -1,8 +1,0 @@
-<div class="container">
-  <%= form_with model: @post do |form| %>
-    <%= form.text_field :title, placeholder: 'Title', class: 'posts-write-title' %>
-    <%= form.text_field :subtitle, placeholder: 'Subtitle', class: 'posts-write-subtitle' %>
-    <%= form.rich_text_area :content, placeholder: 'Write something amazing.' %>
-    <%= form.submit "Publish", class: 'posts-write-publish-button' %>
-  <% end %>
-</div>

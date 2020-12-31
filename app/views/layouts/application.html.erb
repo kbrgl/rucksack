@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Great Stuff by Kabir Goel</title>
+    <title><%= Newsletter.name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <style>
+      :root {
+        --accent-color: <%= Newsletter.accent_color %>
+      }
+    </style>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= yield :head %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+    <div class="container">
+      <%= yield %>
+      <%= render "shared/footer" %>
+    </div>
   </body>
 </html>

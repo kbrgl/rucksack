@@ -5,10 +5,18 @@
 //
 //= require trix/dist/trix
 
+@import 'variables';
+
 // We need to override trix.css’s image gallery styles to accommodate the
 // <action-text-attachment> element we wrap around attachments. Otherwise,
 // images in galleries will be squished by the max-width: 33%; rule.
+
 .trix-content {
+  font-family: $text-font;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  line-height: 1.6;
+
   .attachment-gallery {
     > action-text-attachment,
     > .attachment {
@@ -34,3 +42,17 @@
     }
   }
 }
+
+trix-editor {
+  font-family: $text-font;
+  min-height: 50vh;
+  border: 1px solid #f4f4f4;
+  border-left: 0;
+  border-right: 0;
+  padding: 1rem 0;
+  
+  a {
+    color: $accent-color;
+  }
+}
+

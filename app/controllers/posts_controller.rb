@@ -1,18 +1,48 @@
 class PostsController < ApplicationController
+  before_action :authenticate_writer!, except: [:index, :show]
+  authorize_resource except: [:index, :show]
+  
+  def index
+    @posts = Post.published
+    @subscriber = Subscriber.new
+  end
+
   def new
-    @posts = Post.order(created_at: :desc)
-    @post = Post.new
+    @post = Post.create!
+    redirect_to edit_post_path(@post)
   end
 
   def show
     @post = Post.find(params[:id])
-    @subscriber = Subscriber.new
-    @favorite = Favorite.new
+    if @post.draft && !writer_signed_in?
+      not_found
+    else
+      @subscriber = Subscriber.new
+      @favorite = Favorite.new
+    end
   end
 
-  def create
-    post = Post.create! params.require(:post).permit(:title, :subtitle, :content)
-    NewsletterMailer.deliver_post(post)
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.update!(post_params)
+    if params[:post][:sendmail]
+      NewsletterMailer.deliver_post(post)
+    end
     redirect_to post
+  end
+
+  def destroy
+    Post.find(params[:id]).destroy
+    redirect_to root_path
+  end
+
+private
+
+  def post_params
+    params.require(:post).permit(:title, :subtitle, :content, :draft)
   end
 end

@@ -1,0 +1,52 @@
+<div class="dashboard-header">
+  <h1>Dashboard</h1>
+  <%= link_to 'Write', new_post_path, class: 'button button--styled' %>
+</div>
+<hr>
+<h2>Drafts</h2>
+<%= render "shared/posts", empty_message: "No drafts yet. Go write something!", posts: @drafts %>
+
+<h2>Writers</h2>
+<% if @writers.empty? %>
+  <p class="empty-message">No writers yet.</p>
+<% else %>
+  <ul class="list list--unstyled list--vertical">
+    <% @friends.each do |writer| %>
+      <% if current_writer.email == writer.email %>
+        <li class="list__item">
+          <span class="item__info item__info--link"><%= writer.name %></span>
+          <span class="item__info item__info--meta"><%= writer.email %></span>
+        </li>
+      <% else %>
+        <li class="list__item">
+          <span class="item__info item__info--link"><%= writer.name %></span>
+          <span class="item__info item__info--meta"><%= writer.email %></span>
+          <span class="item__info item__info--action action--danger"><%= link_to "Remove", writer_path(writer), method: 'delete', data: {confirm: "Are you sure you want to remove #{writer.name}?"} %></span>
+        </li>
+      <% end %>
+    <% end %>
+    <% @strangers.each do |writer| %>
+      <li class="list__item">
+        <span class="item__info item__info--link"><%= writer.name %></span>
+        <span class="item__info item__info--meta"><%= writer.email %></span>
+        <span class="item__info item__info--action action--affirm"><%= link_to "Approve", approve_writer_path(writer), method: 'post' %></span>
+        <span class="item__info item__info--action action--danger"><%= link_to "Reject", approve_writer_path(writer), method: 'delete', data: { confirm: "Are you sure you want to reject #{writer.name}?" } %></span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>Subscribers</h2>
+<% if @subscribers.empty? %>
+  <p class="empty-message">No subscribers yet. Tell your friends!</p>
+<% else %>
+  <ul class="list list--unstyled list--vertical">
+    <% @subscribers.each do |subscriber| %>
+      <li class="list__item">
+        <span class="item__info item__info--link"><%= subscriber.email %></span>
+        <span class="item__info item__info--meta"><%= format_date(subscriber.created_at) %></span>
+        <span class="item__info item__info--action action--danger"><%= link_to "Remove", subscriber_path(subscriber), method: 'delete', data: {confirm: "Are you sure you want to remove #{subscriber.email}?"} %></span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

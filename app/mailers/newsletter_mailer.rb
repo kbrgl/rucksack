@@ -3,7 +3,7 @@ class NewsletterMailer < ApplicationMailer
 
   def self.deliver_post(post)
     Subscriber.all.map do |subscriber|
-      NewsletterMailer.with(subscriber: subscriber, post: post).post.deliver
+      NewsletterMailer.with(subscriber: subscriber, post: post).post.deliver_later
     end
   end
 
