@@ -1,5 +1,5 @@
 class Newsletter
-  def self.name
+  def self.title
     "Rucksack"
   end
 
@@ -10,5 +10,13 @@ class Newsletter
   def self.accent_color
     # You can use any valid CSS color value here.
     "#000000"
+  end
+
+  def self.from
+    "Kabir from Rucksack <newsletter@example.com>"
+  end
+
+  def self.author
+    "Kabir Goel"
   end
 end

@@ -1,6 +1,4 @@
 class NewsletterMailer < ApplicationMailer
-  default from: 'Great Stuff <newsletter@kabirgoel.com>'
-
   def self.deliver_post(post)
     Subscriber.all.map do |subscriber|
       NewsletterMailer.with(subscriber: subscriber, post: post).post.deliver_later
@@ -9,7 +7,7 @@ class NewsletterMailer < ApplicationMailer
 
   def welcome
     @subscriber = params[:subscriber]
-    mail(to: @subscriber.email, subject: 'Welcome to Great Stuff!')
+    mail(to: @subscriber.email, subject: "Welcome to #{Newsletter.title}!")
   end
 
   def post

@@ -1,7 +1,7 @@
 <div class="header">
   <%= image_tag "logo.png", alt: "Logo", class: "header__logo" %>
   <section class="header__about">
-    <h1 class="header__title"><%= Newsletter.name %></h1>
+    <h1 class="header__title"><%= Newsletter.title %></h1>
     <p class="header__description"><%= Newsletter.description %></p>
     <div class="header__stats"><%= pluralize Post.published.count, "issue" %> &middot; <%= pluralize Subscriber.all.count, "subscriber" %></div>
     <%= render partial: "shared/subscribe", locals: {subscriber: @subscriber} %>

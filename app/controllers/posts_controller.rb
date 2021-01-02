@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_writer!, except: [:index, :show]
-  authorize_resource except: [:index, :show]
-  
+  before_action :authenticate_writer!, except: %i[index show]
+  authorize_resource except: %i[index show]
+
   def index
     @posts = Post.published
     @subscriber = Subscriber.new
@@ -29,9 +29,7 @@ class PostsController < ApplicationController
   def update
     post = Post.find(params[:id])
     post.update!(post_params)
-    if params[:post][:sendmail]
-      NewsletterMailer.deliver_post(post)
-    end
+    NewsletterMailer.deliver_post(post) if params[:post][:sendmail]
     redirect_to post
   end
 
@@ -40,7 +38,7 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-private
+  private
 
   def post_params
     params.require(:post).permit(:title, :subtitle, :content, :draft)
