@@ -1,0 +1,11 @@
+<a href="<%= url_for(post) %>" class="post">
+  <h2>
+    <span class="link--primary"><%= post.title %></span><span class="link--secondary">&nbsp;&mdash;&nbsp;<%= post.subtitle %></span>
+  </h2>
+  <div>
+    <time><%= format_date(post.created_at) %></time>
+    <% if post.draft %>
+      <span class="tag">Draft</span>
+    <% end %>
+  </div>
+</a>

@@ -1,9 +1,9 @@
 class DashboardsController < ApplicationController
   before_action :authenticate_writer!
   authorize_resource class: false
-  
+
   def show
-    @drafts = Post.drafts
+    @posts = Post.all
     @writers = Writer.all
     @friends = Writer.with_role :friend
     @strangers = Writer.with_role :stranger

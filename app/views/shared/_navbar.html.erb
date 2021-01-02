@@ -1,26 +1,21 @@
-<div class="ribbon"></div>
 <% if notice %>
-  <div class="flash container"><%= notice %></div>
+  <div class="flash l-wrapper"><%= notice %></div>
 <% end %>
 <% if alert %>
-  <div class="flash container"><%= alert %></div>
+  <div class="flash l-wrapper"><%= alert %></div>
 <% end %>
 <% if !current_page?(root_path) || writer_signed_in? %>
-  <div class="container">
-    <div class="navbar">
-      <ul class="list list--unstyled list--horizontal">
-        <% unless current_page?(root_path) %>
-          <li><a href="<%= root_path %>" class="home-link"><span class="home-link__icon">◀</span> Home</a></li>
-        <% end %>
+  <div class="l-wrapper">
+    <nav class="l-navbar">
+      <a href="<%= root_path %>" class="l-navbar__brand">
+        <%= image_tag "logo.png", alt: "Logo", class: "l-navbar__logo" %>
+        <span class="l-navbar__title"><%= Newsletter.title %></span>
+      </a>
+      <div>
         <% if writer_signed_in? && (can? :manage, :all) %>
-          <li><%= link_to "Dashboard", dashboard_path %></li>
+          <%= link_to "Dashboard", dashboard_path %>
         <% end %>
-      </ul>
-      <ul class="list list--unstyled list--horizontal">
-        <% if writer_signed_in? %>
-          <%= link_to "Sign out", destroy_writer_session_path, method: 'delete' %>
-        <% end %>
-      </ul>
-    </div>
+      </div>
+    </nav>
   </div>
 <% end %>

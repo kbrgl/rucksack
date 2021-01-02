@@ -1,34 +1,41 @@
-<% if writer_signed_in? && (can? :manage, Post) %>
-  <ul class="post__actions list list--unstyled list--horizontal">
-    <li><%= link_to "Edit", edit_post_path(@post) %></li>
-    <li>
-      <%= link_to "Delete", @post, method: 'delete', data: {
-        confirm: "Are you sure you want to delete #{@post.title.presence || 'this post'}?"
-      } %>
-    </li>
-  </ul>
-<% end %>
-<article>
-  <h1 class="post__title"><%= @post.title %></h1>
-  <h2 class="post__subtitle"><%= @post.subtitle %></h2>
-  <div class="post__content">
-    <% if @post.content.to_plain_text.length > 0 || !writer_signed_in? || (cannot? :manage, Post) %>
-      <%= @post.content %>
-    <% else %>
-      <div class="empty-message">
-        There's nothing here yet. Click "Edit" and write something!
+<main class="l-container">
+  <article>
+    <% if writer_signed_in? && can?(:manage, Post) %>
+      <ul class="post__actions">
+        <li><%= link_to "Edit", edit_post_path(@post) %></li>
+        <li>
+          <%= link_to "Delete", @post, method: 'delete', data: {
+          confirm: "Are you sure you want to delete #{@post.title.presence || 'this post'}?"
+        } %>
+        </li>
+      </ul>
+    <% end %>
+    <header>
+      <div class="post__time">
+        <time><%= format_date(@post.created_at) %></time>&nbsp;&middot;
+        <time><%= @post.content.to_plain_text.reading_time(format: :approx) %></time>
       </div>
-    <% end %>
-  </div>
-  <hr>
-  <%= render partial: "shared/subscribe", locals: {subscriber: @subscriber} %>
-  <div class="post__meta">
-    <p>
-      <time class="post__time"><%= format_date(@post.created_at) %></time>
-    </p>
-    <%= form_with model: @favorite do |f| %>
-      <%= f.hidden_field "post", value: @post.id %>
-      <%= f.button "♡ #{@post.favorites.count}", class: 'button button--unstyled' %>
-    <% end %>
-  </div>
-</article>
+      <h1 class="post__title"><%= @post.title %></h1>
+      <h2 class="post__subtitle"><%= @post.subtitle %></h2>
+      <div class="post__byline">
+        by <%= Newsletter.author %> &middot;
+        <%= form_with model: @favorite, html: {style: 'display: inline-block'} do |f| %>
+          <%= f.hidden_field "post", value: @post.id %>
+          <%= f.submit "♡ #{@post.favorites.count}", style: 'padding: 0' %>
+        <% end %>
+      </div>
+    </header>
+    <div class="post__content">
+      <% if @post.content.to_plain_text.length > 0 || !writer_signed_in? || (cannot? :manage, Post) %>
+        <%= @post.content %>
+      <% else %>
+        <div class="empty-message">
+          There's nothing here yet. Click "Edit" and write something!
+        </div>
+      <% end %>
+    </div>
+    <footer>
+      <%= render partial: "shared/subscribe", locals: {subscriber: @subscriber} %>
+    </footer>
+  </article>
+</main>

@@ -9,7 +9,7 @@ class Newsletter
 
   def self.accent_color
     # You can use any valid CSS color value here.
-    '#000000'
+    '#ae3737'
   end
 
   def self.from

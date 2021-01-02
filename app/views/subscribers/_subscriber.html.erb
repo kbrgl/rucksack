@@ -1,0 +1,8 @@
+<div class="subscriber">
+  <a href="<%= url_for(subscriber) %>">
+    <span class="link--primary"><%= subscriber.email %></span><span class="link--secondary">&nbsp;&mdash;&nbsp;<%= format_date(subscriber.created_at) %></span>
+  </a>
+  <div>
+    <%= link_to "✕", subscriber_path(subscriber), method: 'delete', class: 'action--danger', data: {confirm: "Are you sure you want to remove #{subscriber.email}?"} %>
+  </div>
+</div>

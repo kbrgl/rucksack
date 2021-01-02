@@ -9,6 +9,8 @@ import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "trix";
 import "@rails/actiontext";
+import "chartkick";
+import "chart.js";
 
 Rails.start();
 Turbolinks.start();

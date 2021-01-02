@@ -1,4 +1,12 @@
-<div class="footer">
-  <div class="footer__copyright">© 2020 <%= Newsletter.author %></div>
-  <div class="footer__platform">Powered by Rucksack</div>
-</div>
+<footer class="l-container l-footer">
+  <div class="l-footer__title"><%= link_to Newsletter.title, root_path %></div>
+  <ul class="l-footer__links">
+    <li><%= link_to 'About', '#' %></li>
+    <li><%= link_to 'Archive', '#' %></li>
+    <li><%= link_to 'Send me an email', '#' %></li>
+  </ul>
+  <div class="l-footer__meta">
+    <div class="l-footer__copyright">© 2020 <%= Newsletter.author %></div>
+    <%= link_to 'Rucksack', 'https://github.com/kbrgl/rucksack', class: 'l-footer__platform' %>
+  </div>
+</footer>

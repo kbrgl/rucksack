@@ -1,0 +1,231 @@
+:root {
+  --color-light: #9393a8;
+  --color-display: #101020;
+  --color-stroke: #f4f4f4;
+  --color-body: #282851;
+
+  --big: 60px;
+  --large: 40px;
+  --medium: 30px;
+  --small: 20px;
+  --extra-small: 15px;
+  --tiny: 10px;
+  --micro: 5px;
+
+  --font-family-display: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  --font-family-body: Source Serif Pro, Iowan Old Style, Apple Garamond,
+    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+  --font-weight-semi-bold: 500;
+
+  --line-height-title: 1.5;
+  --line-height-body: 1.5;
+
+  --font-size-title: 36px;
+  --font-size-heading: 30px;
+  --font-size-subheading: 25px;
+  --font-size-display: 18px;
+  --font-size-small: 16px;
+  --font-size-tiny: 14px;
+  --font-size-body: 20px;
+  --font-size-subtitle: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+::placeholder {
+  color: var(--color-light);
+  opacity: 1;
+}
+
+html,
+body {
+  font-size: var(--font-size-display);
+  font-family: var(--font-family-display);
+  font-weight: var(--weight-normal);
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: var(--line-height-body);
+  color: var(--color-display);
+}
+
+.l-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.l-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.l-navbar {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--color-light);
+
+  padding: var(--small) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-stroke);
+}
+
+.l-navbar__logo {
+  height: 48px;
+  width: 48px;
+  border-radius: 4px;
+  box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+  margin-right: var(--extra-small);
+}
+
+.l-navbar__brand {
+  display: flex;
+  align-items: center;
+}
+
+.l-navbar__title {
+  color: var(--color-display);
+}
+
+.l-navbar__brand:hover .l-navbar__title {
+  color: var(--color-light);
+}
+
+.l-navbar a:hover {
+  color: var(--color-display);
+}
+
+.l-footer {
+  font-size: var(--font-size-small);
+  border-top: 1px solid var(--color-stroke);
+  padding: var(--large) 0;
+  color: var(--color-light);
+}
+
+.l-footer__title {
+  color: var(--color-display);
+  font-weight: var(--font-weight-semi-bold);
+}
+
+.l-footer__links {
+  margin: var(--small) 0;
+}
+
+.l-footer__links li {
+  margin: var(--micro) 0;
+}
+
+.l-footer__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--medium) 0;
+}
+
+.l-footer__platform {
+  font-size: calc(var(--font-size-body) * 1.25);
+  font-family: var(--font-family-body);
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.l-footer__platform:hover {
+  color: var(--color-display);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: var(--line-height-title);
+  font-weight: var(--font-weight-bold);
+  margin: var(--small) 0 var(--tiny);
+}
+
+h1 {
+  font-size: var(--font-size-title);
+  color: var(--color-accent);
+}
+
+h2 {
+  font-size: var(--font-size-heading);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-subheading);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #f4f4f4;
+  margin: var(--tiny) 0;
+}
+
+main {
+  padding: var(--large) 0;
+}
+
+blockquote {
+  border-left: 5px solid var(--color-accent);
+  margin: var(--small) 0 var(--small) var(--tiny);
+  padding: 0 0 0 var(--small);
+}
+
+button,
+input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-small);
+  line-height: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+button,
+input[type="submit"] {
+  padding: var(--extra-small) var(--large);
+  cursor: pointer;
+  font-weight: var(--font-weight-semi-bold);
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  border: 1px solid var(--color-stroke);
+  border-radius: 4px;
+  padding: var(--extra-small) var(--small);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: var(--color-accent);
+}
+
+ul {
+  list-style-type: none;
+}
