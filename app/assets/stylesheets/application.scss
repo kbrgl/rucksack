@@ -253,6 +253,10 @@ textarea[name="post[subtitle]"] {
   flex-direction: row-reverse;
 }
 
+.dashboard section > h2 {
+  margin-bottom: var(--small);
+}
+
 .dashboard .subscribers__count {
   color: var(--color-light);
 }

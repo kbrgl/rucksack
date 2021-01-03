@@ -3,7 +3,7 @@
     <span class="link--primary"><%= writer.name %></span><span class="link--secondary">&nbsp;&mdash;&nbsp;<%= writer.email %></span>
   </a>
   <% if writer.has_role? :friend %>
-    <% if current_writer.email == writer.email %>
+    <% unless current_writer.email == writer.email %>
       <div>
         <%= link_to "✕", writer_path(writer), method: 'delete', class: 'action--danger', data: {confirm: "Are you sure you want to remove #{writer.name}?"} %>
       </div>

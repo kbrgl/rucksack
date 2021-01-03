@@ -6,62 +6,89 @@
 </div>
 <main class="dashboard">
   <div class="l-container">
-    <div class="heading-wrapper--with-action">
-      <h2>Posts</h2>
-      <a href="<%= write_path %>" class="button button--secondary">
-        <svg class="button__icon" width="154" height="154" viewBox="0 0 154 154" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M125.895 2.82843C127.457 1.26633 129.989 1.26633 131.552 2.82843L150.643 21.9203C152.206 23.4824 152.206 26.0151 150.643 27.5772L140.037 38.1838L115.288 13.435L125.895 2.82843Z" fill="black"/>
-          <rect x="108.217" y="20.5061" width="35" height="107" transform="rotate(45 108.217 20.5061)" fill="black"/>
-          <path d="M14.2356 139.112L24.7114 103.979L49.3683 128.636L14.2356 139.112Z" fill="black"/>
-        </svg>
-        <span>Write</span>
-      </a>
-    </div>
-    <%= render @posts %>
-    <div class="heading-wrapper--with-action">
-      <h2>Subscribers</h2>
-      <h2 class="subscribers__count"><%= @subscribers.count %></h2>
-    </div>
-    <%= line_chart Subscriber.group_by_day(:created_at).count %>
-    <%= render @subscribers %>
+    <section>
+      <div class="heading-wrapper--with-action">
+        <h2>Posts</h2>
+        <a href="<%= write_path %>" class="button button--secondary">
+          <svg class="button__icon" width="154" height="154" viewBox="0 0 154 154" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M125.895 2.82843C127.457 1.26633 129.989 1.26633 131.552 2.82843L150.643 21.9203C152.206 23.4824 152.206 26.0151 150.643 27.5772L140.037 38.1838L115.288 13.435L125.895 2.82843Z" fill="black"/>
+            <rect x="108.217" y="20.5061" width="35" height="107" transform="rotate(45 108.217 20.5061)" fill="black"/>
+            <path d="M14.2356 139.112L24.7114 103.979L49.3683 128.636L14.2356 139.112Z" fill="black"/>
+          </svg>
+          <span>Write</span>
+        </a>
+      </div>
+      <%= render @posts %>
+    </section>
+    <section>
+      <div class="heading-wrapper--with-action">
+        <h2>Subscribers</h2>
+        <h2 class="subscribers__count"><%= @subscribers.count %></h2>
+      </div>
+      <%= line_chart Subscriber.group_by_day(:created_at).count %>
+      <%= render @subscribers %>
+    </section>
   </div>
   <div class="l-container">
-    <h2>Settings</h2>
-    <%= form_with model: @newsletter, class: 'settings-form' do |form| %>
-      <div class="settings-form__horizontal">
-        <%= image_tag logo_url, alt: "Logo" %>
-        <%= form.file_field :logo %>
-      </div>
-    <% end %>
-    <%= form_with model: @newsletter, class: 'settings-form' do |form| %>
-      <div class="field">
-        <%= form.label :title %>
-        <%= form.text_field :title, placeholder: @newsletter.title, value: '' %>
-      </div>
-    <% end %>
-    <%= form_with model: @newsletter, class: 'settings-form' do |form| %>
-      <div class="field">
-        <%= form.label :description %>
-        <%= form.text_area :description, placeholder: @newsletter.description, value: '' %>
-      </div>
-    <% end %>
-    <%= form_with model: @newsletter, class: 'settings-form' do |form| %>
-      <div class="field settings-form__horizontal">
-        <%= form.hidden_field :accent_color, value: @newsletter.accent_color, id: 'accent-color-value' %>
-        <details>
-          <summary><%= form.label :accent_color %></summary>
-          <div id="color-picker"></div>
-        </details>
-      </div>
-    <% end %>
-    <h2>Writers</h2>
-    <% if @writers.empty? %>
-      <p class="empty-message">No writers yet.</p>
-    <% else %>
-      <ul>
-        <%= render @friends %>
-        <%= render @strangers %>
-      </ul>
-    <% end %>
+    <section class="settings">
+      <h2>Settings</h2>
+      <%= form_with model: @newsletter, class: 'settings-form' do |form| %>
+        <div class="field settings-form__horizontal">
+          <%= image_tag logo_url, alt: "Logo" %>
+          <%= form.file_field :logo %>
+        </div>
+        <div class="field">
+          <%= form.label :title %>
+          <%= form.text_field :title %>
+        </div>
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_area :description %>
+        </div>
+        <div class="field">
+          <%= form.label :about %>
+          <%= form.text_area :about, rows: 8 %>
+        </div>
+        <div class="field settings-form__horizontal">
+          <%= form.hidden_field :accent_color, value: @newsletter.accent_color, id: 'accent-color-value' %>
+          <details>
+            <summary><%= form.label :accent_color %></summary>
+            <div id="color-picker"></div>
+            <div class="field">
+              <input type="text" value="<%= @newsletter.accent_color %>">
+              <p></p>
+            </div>
+          </details>
+        </div>
+        <div class="field">
+          <%= form.label :from_name %>
+          <%= form.text_field :from_name %>
+        </div>
+        <div class="field">
+          <%= form.label :from_email %>
+          <%= form.email_field :from_email %>
+        </div>
+        <div class="field">
+          <%= form.label :to %>
+          <%= form.email_field :to %>
+        </div>
+        <div class="field">
+          <%= form.label :author %>
+          <%= form.text_field :author %>
+        </div>
+        <%= form.submit 'Save', class: 'button button--primary' %>
+      <% end %>
+    </section>
+    <section>
+      <h2>Writers</h2>
+      <% if @writers.empty? %>
+        <p class="empty-message">No writers yet.</p>
+      <% else %>
+        <ul>
+          <%= render @friends %>
+          <%= render @strangers %>
+        </ul>
+      <% end %>
+    </section>
   </div>
 </main>
