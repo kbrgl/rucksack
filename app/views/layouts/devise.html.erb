@@ -16,13 +16,15 @@
   </head>
   <body>
     <%= render "shared/navbar" %>
-    <% if notice %>
-      <div class="l-container flash"><%= notice %></div>
-    <% end %>
-    <% if alert %>
-      <div class="l-container flash"><%= alert %></div>
-    <% end %>
-    <div class="l-wrapper"><%= yield %></div>
+    <main class="l-container devise">
+      <% if notice %>
+        <div class="l-container flash"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="l-container flash"><%= alert %></div>
+      <% end %>
+      <%= yield %>
+    </main>
     <%= render "shared/footer" %>
   </body>
 </html>

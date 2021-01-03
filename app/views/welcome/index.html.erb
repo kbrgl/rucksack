@@ -1,0 +1,17 @@
+<div class="home__background"></div>
+<div class="l-container">
+  <div class="l-header">
+    <%= image_tag logo_url, alt: "Logo", class: "l-header__logo" %>
+    <section class="l-header__about">
+      <h1 class="l-header__title"><%= Newsletter.title %></h1>
+      <p class="l-header__description"><%= Newsletter.description %></p>
+      <%= render partial: "shared/subscribe", locals: {subscriber: @subscriber} %>
+      <div class="l-header__stats"><%= pluralize Post.published.count, "issue" %> &middot; <%= pluralize Subscriber.all.count, "subscriber" %></div>
+    </section>
+  </div>
+  <section>
+    <div class="index">
+      <%= render @posts %>
+    </div>
+  </section>
+</div>

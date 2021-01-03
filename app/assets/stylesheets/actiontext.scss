@@ -48,6 +48,10 @@
   }
 }
 
+trix-toolbar {
+  margin: var(--big) 0 var(--small);
+}
+
 trix-editor {
   font-family: var(--font-family-body);
   color: var(--color-body);
@@ -56,6 +60,7 @@ trix-editor {
   border-left: 0;
   border-right: 0;
   padding: 1rem 0;
+  margin: var(--small) 0 var(--large);
 
   a {
     color: var(--color-accent);

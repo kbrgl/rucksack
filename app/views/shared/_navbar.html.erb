@@ -1,21 +1,27 @@
-<% if notice %>
-  <div class="flash l-wrapper"><%= notice %></div>
-<% end %>
-<% if alert %>
-  <div class="flash l-wrapper"><%= alert %></div>
-<% end %>
-<% if !current_page?(root_path) || writer_signed_in? %>
-  <div class="l-wrapper">
-    <nav class="l-navbar">
+<div class="l-wrapper">
+  <nav class="l-navbar">
+    <div class="l-navbar__info">
       <a href="<%= root_path %>" class="l-navbar__brand">
-        <%= image_tag "logo.png", alt: "Logo", class: "l-navbar__logo" %>
+        <%= image_tag logo_url, alt: "Logo", class: "l-navbar__logo" %>
         <span class="l-navbar__title"><%= Newsletter.title %></span>
       </a>
-      <div>
-        <% if writer_signed_in? && (can? :manage, :all) %>
-          <%= link_to "Dashboard", dashboard_path %>
+      <a href="#" class="l-navbar__expand">
+        <div></div>
+        <div></div>
+        <div></div>
+      </a>
+    </div>
+    <div class="l-navbar__links">
+      <ul>
+        <% if writer_signed_in? %>
+          <% if can?(:manage, :all) %>
+            <li><%= link_to "Dashboard", dashboard_path %></li>
+          <% end %>
+          <li><%= link_to "Sign out", destroy_writer_session_path, method: 'delete' %></li>
         <% end %>
-      </div>
-    </nav>
-  </div>
-<% end %>
+        <li><%= link_to 'About', about_path %></li>
+        <li><%= link_to 'Archive', posts_path %></li>
+      </ul>
+    </div>
+  </nav>
+</div>

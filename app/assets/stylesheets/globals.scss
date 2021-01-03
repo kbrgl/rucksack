@@ -1,7 +1,7 @@
 :root {
   --color-light: #9393a8;
   --color-display: #101020;
-  --color-stroke: #f4f4f4;
+  --color-stroke: #0000000b;
   --color-body: #282851;
 
   --big: 60px;
@@ -23,7 +23,7 @@
   --font-weight-bold: 600;
   --font-weight-semi-bold: 500;
 
-  --line-height-title: 1.5;
+  --line-height-title: 1.25;
   --line-height-body: 1.5;
 
   --font-size-title: 36px;
@@ -58,6 +58,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: var(--line-height-body);
   color: var(--color-display);
+
+  padding: 0 var(--tiny);
 }
 
 .l-wrapper {
@@ -67,7 +69,7 @@ body {
 
 .l-container {
   max-width: 650px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .l-navbar {
@@ -79,6 +81,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
   border-bottom: 1px solid var(--color-stroke);
 }
 
@@ -86,13 +89,81 @@ body {
   height: 48px;
   width: 48px;
   border-radius: 4px;
-  box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
   margin-right: var(--extra-small);
 }
 
 .l-navbar__brand {
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 650px) {
+  .l-navbar__info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.l-navbar__expand {
+  display: none;
+}
+
+.l-navbar__expand > div {
+  height: 3px;
+  background: var(--color-light);
+  width: 24px;
+  margin-bottom: var(--micro);
+}
+
+.l-navbar__expand > div:last-child {
+  margin-bottom: 0;
+}
+
+.l-navbar__links ul {
+  display: flex;
+}
+
+.l-navbar__links li {
+  margin-left: var(--small);
+}
+
+@media screen and (max-width: 650px) {
+  .l-navbar {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .l-navbar__expand {
+    display: block;
+  }
+
+  .l-navbar__links:not(.is-active) {
+    display: none;
+  }
+
+  .l-navbar__links.is-active {
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    padding: var(--small);
+    border-radius: 8px;
+
+    background: #fff;
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .l-navbar__links ul {
+    flex-direction: column;
+  }
+
+  .l-navbar__links li {
+    margin: calc(var(--tiny) / 2) 0;
+  }
 }
 
 .l-navbar__title {
@@ -105,6 +176,32 @@ body {
 
 .l-navbar a:hover {
   color: var(--color-display);
+}
+
+.l-header {
+  padding: var(--large) 0;
+  border-bottom: 1px solid var(--color-stroke);
+}
+
+.l-header h1 {
+  margin: 0 0 var(--tiny) 0;
+}
+
+.l-header__logo {
+  margin: 0 0 var(--small) 0;
+  width: 128px;
+  height: 128px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+.l-header__description {
+  color: var(--color-light);
+}
+
+.l-header__stats {
+  color: var(--color-light);
+  font-size: var(--font-size-small);
 }
 
 .l-footer {
@@ -193,8 +290,10 @@ blockquote {
   padding: 0 0 0 var(--small);
 }
 
+.button,
 button,
-input {
+input,
+textarea {
   background: transparent;
   border: 0;
   outline: 0;
@@ -203,27 +302,65 @@ input {
   line-height: inherit;
   color: inherit;
   padding: 0;
+  resize: none;
 }
 
+.button,
 button,
 input[type="submit"] {
-  padding: var(--extra-small) var(--large);
   cursor: pointer;
   font-weight: var(--font-weight-semi-bold);
+  display: flex;
+  align-items: center;
+}
+
+.button--primary,
+.button--secondary {
+  padding: var(--extra-small) var(--large);
+  border-radius: 4px;
+}
+
+.button--primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.button--secondary {
+  border: 1px solid var(--color-stroke);
+}
+
+.button--secondary:hover {
+  background: var(--color-stroke);
 }
 
 input[type="email"],
 input[type="password"],
-input[type="text"] {
+input[type="text"],
+textarea {
+  color: var(--color-display);
   border: 1px solid var(--color-stroke);
   border-radius: 4px;
   padding: var(--extra-small) var(--small);
+  width: 100%;
 }
 
 input[type="email"]:focus,
 input[type="password"]:focus,
-input[type="text"]:focus {
+input[type="text"]:focus,
+textarea:focus {
   border-color: var(--color-accent);
+}
+
+input[type="checkbox"] ~ label {
+  vertical-align: middle;
+}
+
+input[type="color"] {
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 0;
 }
 
 ul {

@@ -3,6 +3,7 @@ class DashboardsController < ApplicationController
   authorize_resource class: false
 
   def show
+    @newsletter = Newsletter.get
     @posts = Post.all
     @writers = Writer.all
     @friends = Writer.with_role :friend

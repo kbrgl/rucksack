@@ -11,7 +11,20 @@ import "trix";
 import "@rails/actiontext";
 import "chartkick";
 import "chart.js";
+import "dashboard";
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+window.addEventListener("turbolinks:load", function () {
+  const expandButton = document.querySelector(".l-navbar__expand");
+  const links = document.querySelector(".l-navbar__links");
+  expandButton.addEventListener("click", () => {
+    links.classList.toggle("is-active");
+  });
+
+  document.querySelectorAll('a[href="#"]').forEach((item) => {
+    item.addEventListener("click", (event) => event.preventDefault());
+  });
+});

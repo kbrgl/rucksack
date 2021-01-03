@@ -828,6 +828,19 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@irojs/iro-core@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@irojs/iro-core/-/iro-core-1.0.5.tgz#09ef436051131871555ec8b0486d30db4e9c23be"
+  integrity sha512-tGSYaSechLfF+40oBwsunsL9q2+bvcy1FCa6n/2OKDVgtn9a36XZX2DiJvsQX5u/6I62GCemSlvyAwlqOXQnwQ==
+
+"@jaames/iro@^5.3.1":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@jaames/iro/-/iro-5.3.1.tgz#b640f4a8bd392c9c1758aba99002ddda94bd6cdf"
+  integrity sha512-2mR6IeAYR4a7CWeFrVdvBRH84UdHXtTll/qbpeqfNsL9LROJBxGAK+8d5jXXcjmr+gTYK3AiYDSM1QKP2DkyuQ==
+  dependencies:
+    "@irojs/iro-core" "^1.0.5"
+    preact "^10.0.0"
+
 "@npmcli/move-file@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@npmcli/move-file/-/move-file-1.0.1.tgz#de103070dac0f48ce49cf6693c23af59c0f70464"
@@ -5883,6 +5896,11 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2
     chalk "^2.4.2"
     source-map "^0.6.1"
     supports-color "^6.1.0"
+
+preact@^10.0.0:
+  version "10.5.9"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.5.9.tgz#8caba9288b4db1d593be2317467f8735e43cda0b"
+  integrity sha512-X4m+4VMVINl/JFQKALOCwa3p8vhMAhBvle0hJ/W44w/WWfNb2TA7RNicDV3K2dNVs57f61GviEnVLiwN+fxiIg==
 
 prepend-http@^1.0.0:
   version "1.0.4"

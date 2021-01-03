@@ -1,11 +1,11 @@
 <div class="subscribe">
   <%= form_with model: subscriber, html: {class: 'subscribe__form'} do |f| %>
     <%= f.email_field :email, placeholder: "Email", class: 'subscribe__email' %>
-    <%= f.submit "Subscribe", class: "subscribe__button button button--styled" %>
+    <%= f.submit "Subscribe", class: "subscribe__button button button--primary" %>
   <% end %>
   <% if flash[:subscribe_ok] %>
-    <p class="subscribe__message subscribe__message--subscribed">Thanks for subscribing!</p>
+    <p class="subscribe__message">Thanks for subscribing!</p>
   <% elsif flash[:subscribe_error] %>
-    <p class="subscribe__message subscribe__message--error"><%= flash[:subscribe_error] %></p>
+    <p class="subscribe__message"><%= flash[:subscribe_error] %></p>
   <% end %>
 </div>
