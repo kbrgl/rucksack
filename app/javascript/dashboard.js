@@ -3,11 +3,15 @@ import iro from "@jaames/iro";
 function setupColorPicker() {
   const colorPickerEl = document.querySelector("#color-picker");
 
+  if (!colorPickerEl) {
+    return;
+  }
+
   if (colorPickerEl.innerHTML === "") {
     const accentColorValueEl = document.querySelector("#accent-color-value");
     const inputEl = document.querySelector("#color-picker ~ div > input");
     const inputErrorEl = document.querySelector("#color-picker ~ div > p");
-    inputErrorEl.style = "margin-top: var(--tiny)";
+    inputErrorEl.style = "margin-top: var(--xs)";
 
     const colorPicker = new iro.ColorPicker(colorPickerEl, {
       color: accentColorValueEl.value,

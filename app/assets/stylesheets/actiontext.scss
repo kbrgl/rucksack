@@ -44,12 +44,12 @@
     font-family: var(--font-family-display);
     font-size: var(--font-size-heading);
     font-weight: var(--font-weight-bold);
-    margin: var(--small) 0 var(--medium);
+    margin: var(--m) 0 var(--l);
   }
 }
 
 trix-toolbar {
-  margin: var(--big) 0 var(--small);
+  margin: var(--xxl) 0 var(--m);
 }
 
 trix-editor {
@@ -60,7 +60,7 @@ trix-editor {
   border-left: 0;
   border-right: 0;
   padding: 1rem 0;
-  margin: var(--small) 0 var(--large);
+  margin: var(--m) 0 var(--xl);
 
   a {
     color: var(--color-accent);
