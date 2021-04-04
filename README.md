@@ -38,7 +38,7 @@ I'm not sure when I'll have time to implement these, if ever. If you want to tak
 - [ ] Prettier emails
 - [ ] Unsubscribe button in emails
 - [ ] API docs for headless use
-- [ ] Settings page that includes publication name
+- [x] Settings page that includes publication name
 - [ ] Analytics
 - [ ] One-click deploy
 
